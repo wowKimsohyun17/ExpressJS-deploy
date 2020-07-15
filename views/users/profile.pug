@@ -1,0 +1,25 @@
+extends ../layout/layout
+
+block content
+    h2 Profile
+    .d-flex.my-4
+        if user.avatar
+            img.rounded(src= user.avatar width="100" height="100")
+        else
+            img.rounded(src="https://res.cloudinary.com/dpymvfnzy/image/upload/v1594111592/421-4213053_default-avatar-icon-hd-png-download_xfnuns.png" width="100" height="100") 
+    .profile
+        .item
+            b ID:
+            span.ml-2= user.id
+        .item
+            b Name:
+            span.ml-2= user.name
+        .item
+            b Email:
+            span.ml-2= user.email
+    .my-2
+        form(action="/users/profile/avatar", method="POST" enctype="multipart/form-data")
+            .form-group
+                input(type="hidden", name="id", value=user.id)
+                input.form-control-file(type="file", name="avatar")
+            button.btn.btn-success Update avatar

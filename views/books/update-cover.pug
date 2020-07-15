@@ -1,0 +1,12 @@
+extends ../layout/layout
+
+
+block content
+    h1 Update cover
+
+    form(action='/books/update', method="POST", enctype='multipart/form-data')
+        .form-group
+            label Image
+            input(type="hidden", name="id", value=book.id)
+            input.form-control-file(type='file', name='coverUrl')
+        button.btn.btn-success Update

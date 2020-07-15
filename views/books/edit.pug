@@ -1,0 +1,7 @@
+extends ../layout/layout
+
+block content
+    h1 Sửa tiêu đề sách
+    form.form-group(action="/books/" + book.id +"/edit", method="POST")
+        input.form-control(type="text", value=book.title, name="title")
+        button.btn.btn-primary Submit

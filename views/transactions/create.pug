@@ -1,0 +1,20 @@
+extends ../layout/layout
+
+block content
+    h1 Thuê sách
+    form(method='POST')
+        table
+            tr
+                th userID
+                th bookID
+            tr
+                td
+                    select(name='userId')
+                        each user in users
+                            option= user.id
+                td
+                    select(name='bookId')
+                        each book in books
+                            option= book.id
+
+        button(class="btn btn-success") Submit

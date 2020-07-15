@@ -1,0 +1,21 @@
+html
+    head
+        link(rel="icon", type="image/png", href="/favicon.ico")
+        link(rel="stylesheet",href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css")
+    body
+        nav.navbar.navbar-expand.navbar-dark.bg-dark
+            a.navbar-brand(href="#") Books
+            div.collapse.navbar-collapse
+                ul.navbar-nav.mr-auto
+                    li.nav-item
+                        a.nav-link(href="/users") User
+                    li.nav-item
+                        a.nav-link(href="/books") Books
+                    if user
+                        if user.isAdmin
+                            li.nav-item
+                                a.nav-link(href="/transactions") Transactions
+            if user
+                p= user.name
+        .container.pt-2
+            block content

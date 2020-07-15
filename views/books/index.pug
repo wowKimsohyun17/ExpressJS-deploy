@@ -1,0 +1,51 @@
+extends ../layout/layout
+
+
+block content
+    .heading.d-flex.align-items-center
+        h1 Tủ sách
+        .hire.ml-auto.d-flex.align-items-center
+            p.text-primary Cart (#{count})
+            form(action="/transactions/hire" method="POST")
+                button.btn.btn-primary Thuê
+    table.table(class= user ? (user.isAdmin ? '' : 'd-none') : 'd-none')
+        tr
+        th Name
+        th Description
+        th
+        th
+        th
+        th
+        th
+        each book in books
+            tr
+            td= book.title
+            td= book.description
+            td
+                if book.coverUrl
+                    a.w-100(src= book-coverUrl)
+            td
+                a(href="/books/" + book.id + "/view") Xem
+            td
+                a(href="/books/" + book.id + "/edit") Sửa
+            td
+                a(href="/books/" + book.id + "/delete") Xóa
+            td
+                a(href="/books/" + book.id + "/update") Update
+
+    div(class= user ? (user.isAdmin ? '' : 'd-none') : 'd-none')
+        a.btn.btn-primary(href="/books/create") Thêm sách mới
+
+    .container(class= user ? (user.isAdmin ? 'd-none' : '') : '')
+        .pt-5.d-flex.flex-wrap
+            each book in books
+                .col-6.col-lg-3.my-2
+                    .card
+                        if book.coverUrl
+                            img.w-100(src= book.coverUrl)
+                        else
+                            img.w-100(src= "https://res.cloudinary.com/dpymvfnzy/image/upload/v1594133786/yourname_knbv5y.jpg")
+                        .card-body
+                            h5.card-title= book.title
+                            p.card-text= book.description
+                            a.btn.btn-primary(href='/cart/add/' + book.id) Add to cart

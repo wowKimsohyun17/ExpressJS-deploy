@@ -1,0 +1,26 @@
+extends ../layout/layout
+
+block content
+    h1 Users
+
+    form(action="/users/search", method="GET")
+        input.mr-2(type="text", name="q", value=q)
+        button Search
+    
+    table.table
+        tr
+            th Name
+            th Phone
+            th Avatar
+            th
+        each user in users
+            tr
+                td= user.name
+                td= user.phone
+                td
+                    if user.avatar
+                        img.rounded(src=user.avatar, width="64")
+                td
+                    a.btn.btn-dark(href="/users/" + user.id + "/view") View
+        
+    a.btn-primary.btn(href="/users/create") Tạo người dùng mới
